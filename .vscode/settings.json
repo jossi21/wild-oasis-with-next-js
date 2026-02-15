@@ -1,0 +1,28 @@
+{
+  // GitHub Copilot settings (your existing ones)
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "javascript": false,
+    "javascriptreact": true,
+    "typescriptreact": false,
+    "html": true,
+    "css": true
+  },
+
+  // Tailwind IntelliSense global settings
+  "tailwindCSS.includeLanguages": {
+    "javascript": "javascript",
+    "javascriptreact": "javascript",
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+  "tailwindCSS.emmetCompletions": true,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  }
+}
