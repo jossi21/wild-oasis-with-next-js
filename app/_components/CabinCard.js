@@ -25,7 +25,8 @@ export default function CabinCard({ cabin }) {
           <div className="flex gap-3 items-center mb-2">
             <UserIcon className="h-5 w-5 text-primary-500" />
             <p className="text-lg text-primary-200">
-              For up to <span className="font-bold">{maxCapacity}</span>guests
+              For up to <span className="font-bold">{maxCapacity}</span>
+              guests
             </p>
           </div>
           <p className="flex gap-3 justify-end items-baseline">
