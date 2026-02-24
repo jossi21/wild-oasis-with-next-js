@@ -2,6 +2,7 @@ import Image from "next/image";
 import { EyeSlashIcon, MapPinIcon, UserIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { getCabin, getCabins } from "@/app/_lib/data-service";
+import DescriptionDetail from "@/app/_components/descriptionDetail";
 
 // dynamic metadata
 export async function generateMetadata({ params }) {
@@ -37,8 +38,9 @@ export default async function CabinDetail({ params }) {
             <Image
               src={image}
               alt={`Cabin ${name}`}
-              fill
-              className="object-cover "
+              fill="sizes"
+              className="object-cover  "
+              loading="eager"
             />
           </div>
           <div className="py-4 px-4 ">
@@ -48,7 +50,10 @@ export default async function CabinDetail({ params }) {
             >
               Cabin {name}
             </h3>
-            <p className="text-lg text-primary-500 mb-10">{description}</p>
+            <div className="text-lg text-primary-500 mb-10 h-auto">
+              <DescriptionDetail>{description}</DescriptionDetail>
+            </div>
+
             <ul className="flex flex-col gap-4 mb-7">
               <li className="flex gap-3 items-center">
                 <UserIcon className="h-5 w-5 text-primary-600" />
