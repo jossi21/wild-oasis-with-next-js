@@ -128,6 +128,8 @@ export async function getBookedDatesByCabinId(cabinId) {
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").single();
 
+  // await new Promise((res) => setTimeout(res, 5000));
+
   if (error) {
     console.error(error);
     throw new Error("Settings could not be loaded");
@@ -152,7 +154,15 @@ export async function getCountries() {
 // CREATE
 
 export async function createGuest(newGuest) {
-  const { data, error } = await supabase.from("guests").insert([newGuest]);
+  // console.log(
+  //   "using service role key: ",
+  //   process.env.SUPABASE_SERVICE_ROLE_KEY ? "YES" : "NO",
+  // );
+  const { data, error } = await supabase
+    .from("guests")
+    .insert([newGuest])
+    .select()
+    .single();
 
   if (error) {
     console.error(error);

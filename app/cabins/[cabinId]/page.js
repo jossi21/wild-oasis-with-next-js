@@ -3,6 +3,9 @@ import { EyeSlashIcon, MapPinIcon, UserIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { getCabin, getCabins } from "@/app/_lib/data-service";
 import DescriptionDetail from "@/app/_components/descriptionDetail";
+import ReservationAndDate from "@/app/_components/ReservationAndDate";
+import { Suspense } from "react";
+import SmallSpinner from "@/app/_components/smallSpinner";
 
 // dynamic metadata
 export async function generateMetadata({ params }) {
@@ -87,9 +90,12 @@ export default async function CabinDetail({ params }) {
         </div>
       </div>
       <div>
-        <h2 className="text-4xl md:text-6xl font-semibold text-center text-primary-500">
+        <h2 className="text-4xl md:text-6xl font-semibold text-center text-primary-500 mb-10">
           Come to us. Enjoy your day{" "}
         </h2>
+        <Suspense fallback={<SmallSpinner />}>
+          <ReservationAndDate cabin={cabin} />
+        </Suspense>
       </div>
     </div>
   );
