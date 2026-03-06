@@ -1,11 +1,19 @@
 import Link from "next/link";
 import ReservationCard from "@/app/_components/ReservationCard.js";
+import { auth } from "@/app/_lib/auth";
+import { getBookings } from "@/app/_lib/data-service";
+import ReservationList from "@/app/_components/ReservationList";
 
 export const metadata = {
   title: "Reservation",
 };
-export default function Reservation() {
-  const bookings = [];
+export default async function Reservation() {
+  const session = await auth();
+  // console.log(session.user.guestId);
+
+  const bookings = await getBookings(session?.user?.guestId);
+  // console.log(bookings);
+  // const bookings = [1];
   return (
     <div>
       <h2 className="text-2xl text-accent-400 font-semibold mb-7">
@@ -19,11 +27,7 @@ export default function Reservation() {
           </Link>
         </p>
       ) : (
-        <ul className="space-y-5">
-          {bookings.map((booking) => (
-            <ReservationCard booking={booking} key={booking.id} />
-          ))}
-        </ul>
+        <ReservationList bookings={bookings} />
       )}
     </div>
   );

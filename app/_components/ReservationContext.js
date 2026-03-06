@@ -7,8 +7,9 @@ const ReservationContext = createContext();
 // create the function which holed context value and provide the context
 
 function ReservationProvider({ children }) {
-  const [range, setRange] = useState({ from: undefined, to: undefined });
-  const resetRange = () => setRange({ from: undefined, to: undefined });
+  const initialValue = { from: undefined, to: undefined };
+  const [range, setRange] = useState(initialValue);
+  const resetRange = () => setRange(initialValue);
 
   return (
     <ReservationContext.Provider value={{ range, setRange, resetRange }}>

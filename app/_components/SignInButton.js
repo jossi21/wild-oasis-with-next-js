@@ -1,35 +1,12 @@
 "use client";
 import { useState } from "react";
-import { SignInWithProvider } from "../_lib/actions";
-import { createGuestByEmail } from "../_lib/actions";
-import { useRouter } from "next/navigation";
+import { createGuestByEmail, SignInWithProvider } from "../_lib/actions";
+
+import { SubmitButton } from "./SubmitButton";
 
 export default function SignInButton() {
   const [isChecked, setIsChecked] = useState(false);
-  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const router = useRouter();
-
-  // submit handler function
-  const submitHandler = async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append("email", email);
-
-    const result = await createGuestByEmail(formData);
-
-    // conditional response
-    if (result.success) {
-      setMessage("✅ Guest created successfully!");
-      setEmail("");
-
-      // redirect immediately (no setTimeout needed)
-      router.push("/account");
-    } else {
-      setMessage(`❌ ${result.error}`);
-    }
-  };
 
   return (
     <div className="flex flex-col gap-4 self-center border border-primary-300 py-3 px-5 rounded-xl bg-slate-800">
@@ -46,14 +23,13 @@ export default function SignInButton() {
       )}
 
       <form
-        onSubmit={submitHandler}
+        action={createGuestByEmail}
         className="flex flex-col gap-5 items-center pb-3"
       >
         <input
           placeholder="Enter your email"
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          name="email"
           required
           className="w-full py-2 px-2 bg-primary-400 text-primary-950 text-xl font-semibold rounded-md"
         />
@@ -72,9 +48,7 @@ export default function SignInButton() {
           )}
         </label>
 
-        <button className="bg-blue-500 rounded-lg text-lg  w-[120px] font-semibold py-2">
-          submit
-        </button>
+        <SubmitButton DynamicText="please wait...">Submit</SubmitButton>
       </form>
       {/* Divider */}
       <div className="relative">
