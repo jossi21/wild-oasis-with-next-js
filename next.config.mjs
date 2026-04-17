@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
-
   // image config
   images: {
     remotePatterns: [
@@ -10,6 +8,9 @@ const nextConfig = {
       ),
     ],
   },
+  
+  // Ensure API routes work properly
+  reactStrictMode: true,
 };
 
 export default nextConfig;
